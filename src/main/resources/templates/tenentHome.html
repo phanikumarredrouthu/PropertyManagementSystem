@@ -1,0 +1,30 @@
+<div th:replace="thead::thead"></div>
+<div class="text-center h1 mt-5" th:text="${'Welcome '+tenentModel['name']+' (Tenent)'}"></div>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div class="card p-3 mt-3">
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Name</div>
+				<div th:text="${tenentModel['name']}"></div>
+			</div>
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Email</div>
+				<div th:text="${tenentModel['email']}"></div>
+			</div>
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Phone</div>
+				<div th:text="${tenentModel['phone']}"></div>
+			</div>
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Gender</div>
+				<div th:text="${tenentModel['gender']}"></div>
+			</div>
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Age</div>
+				<div th:text="${tenentModel['age']+' years'}"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4"></div>
+</div>

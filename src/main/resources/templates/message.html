@@ -1,0 +1,15 @@
+<div th:if="${role}=='ROLE_HOUSEOWNER'">
+	<div th:replace="hhead::hhead"></div>
+</div>
+<div th:if="${role}=='ROLE_TENENT'">
+	<div th:replace="thead::thead"></div>
+</div>
+<div th:if="${role}=='ROLE_ADMIN'">
+	<div th:replace="ahead::ahead"></div>
+</div>
+
+<div th:if="${role}=='Home'">
+	<div th:replace="head::head"></div>
+</div>
+
+<div th:text="${message}" class="text-center h4 mt-5 pt-5"></div>

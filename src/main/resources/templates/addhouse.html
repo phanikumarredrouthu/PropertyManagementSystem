@@ -1,0 +1,59 @@
+<div th:replace="hhead::hhead"></div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<div class="card p-3 mt-4">
+				<form th:action="@{addhouse1}" th:object="${houseModel}" enctype="multipart/form-data" method="post">
+					<div class="h4 text-center">Add New Houses</div>
+					<div class="row">
+						<div class="col-md-6 mt-3">
+							<label>House Type:</label>
+							<select th:field="*{houseType}" class="form-control" required>
+								<option value="">Choose HouseType</option>
+								<option value="Appartment">Appartment</option>
+								<option value="Villas">Villas</option>
+								<option value="Condos">Condos</option>
+								<option value="TownHouses">TownHouses</option>
+							</select>
+						</div>
+						<div class="col-md-6 mt-3">
+							<label>House Image</label>
+							<input type="file" name="houseImage2" class="form-control" id="houseImage2"  required>
+						</div>
+						<div class="col-md-6 mt-3">
+							<label>Area</label>
+							<input type="text" id="area" th:field="*{area}" class="form-control" required placeholder="Enter Area">
+						</div>
+						<div class="col-md-6 mt-3">
+							<label>No Of Flors</label>
+							<input type="number" id="noOfFlors" th:field="*{noOfFlors}" class="form-control" required placeholder="Enter No Of Flors">
+						</div>
+						<div class="col-md-6 mt-3">
+							<label>No Of Washrooms</label>
+							<input type="number" id="noOfWashrooms" th:field="*{noOfWashrooms}" class="form-control" required placeholder="Enter No Of Washrooms">
+						</div>
+						<div class="col-md-6 mt-3">
+							<label>No of Bedrooms</label>
+							<input type="number" id="noOfBedrooms" th:field="*{noOfBedrooms}" class="form-control" required placeholder="Enter No Of Bedrooms">
+						</div>
+						<div class="col-md-6 mt-3">
+							<label>Address</label>
+							<textarea id="address" th:field="*{address}" class="form-control" placeholder="Enter Address" required></textarea>
+						</div>
+						<div class="col-md-6 mt-3">
+							<label>About Home</label>
+							 <textarea id="aboutHome" th:field="*{aboutHome}" class="form-control" max="1" placeholder="Enter About Home" required></textarea>
+						</div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4 mt-3">
+							<input type="submit" value="add House" class="btn btn-primary w-100">
+						</div>
+						<div class="col-md-4"></div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</div>

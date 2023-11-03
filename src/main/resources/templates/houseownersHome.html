@@ -1,0 +1,30 @@
+<div th:replace="hhead::hhead"></div>
+<div class="text-center h1 mt-5" th:text="${'Welcome '+houseOwnerModel['name']+' (House Owner)'}"></div>
+<div class="row">
+	<div class="col-md-4"></div>
+	<div class="col-md-4">
+		<div class="card p-3 mt-3">
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Name</div>
+				<div th:text="${houseOwnerModel['name']}"></div>
+			</div>
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Email</div>
+				<div th:text="${houseOwnerModel['email']}"></div>
+			</div>
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Phone</div>
+				<div th:text="${houseOwnerModel['phone']}"></div>
+			</div>
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Gender</div>
+				<div th:text="${houseOwnerModel['gender']}"></div>
+			</div>
+			<div class="mt-3">
+				<div style="font-size: 70%;" class="text-muted">Address</div>
+				<div th:text="${houseOwnerModel['address']}"></div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4"></div>
+</div>

@@ -1,0 +1,39 @@
+<div th:if="${role}=='ROLE_HOUSEOWNER'">
+	<div th:replace="hhead::hhead"></div>
+</div>
+<div th:if="${role}=='ROLE_TENENT'">
+	<div th:replace="thead::thead"></div>
+</div>
+<div class="container">
+	<div class="mt-3" th:each="paymentModel:${paymentList}">
+		<div class="card p-3 mt-4">
+			<div class="row">
+				<div class="h6 text-center">Payment Details</div>
+				<div class="col-md-2">
+					<label class="text-secondary h7">Payment Type:</label>
+					<div class="h6" th:text="${paymentModel['paymentType']}"></div>
+				</div>
+				<div class="col-md-2">
+					<label class="text-secondary h7">Payment For:</label>
+					<div class="h6" th:text="${paymentModel['paymentFor']}"></div>
+				</div>
+				<div class="col-md-2">
+					<label class="text-secondary h7">Payment On:</label>
+					<div class="h6" th:text="${paymentModel['date']}"></div>
+				</div>
+				<div class="col-md-2">
+					<label class="text-secondary h7">Amount:</label>
+					<div class="h6" th:text="${'$ '+paymentModel['amount']}"></div>
+				</div>
+				<div class="col-md-2">
+					<label class="text-secondary h7">Payment by:</label>
+					<div class="h6" th:text="${paymentModel['rentalRequestModel']['tenentModel']['name']}"></div>
+				</div>
+				<div class="col-md-2">
+					<label class="text-secondary h7">Status:</label>
+					<div class="h6" th:text="${paymentModel['status']}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

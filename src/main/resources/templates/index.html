@@ -1,0 +1,23 @@
+<body>
+<div th:replace="head::head"></div>
+<div class="container">
+	<div class="class">Welcome to Property Rental Management</div>
+	<div th:if="${message!=''}" class="text-danger text-center h2 mt-5 p-5 bg-info">Invalid Login Deatails. Login to Continue</div>
+</div>
+
+</body>
+<style>
+	body{
+		background-image: url("https://www.davis-brown.co.uk/news/wp-content/uploads/2018/10/LANDLORD.jpg");
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+	.class{
+		margin:auto;
+		text-align:center;
+		font-size:40px;
+		margin-top: 30px;
+		font-style:italic;
+		font-weight:600;
+	}
+</style>

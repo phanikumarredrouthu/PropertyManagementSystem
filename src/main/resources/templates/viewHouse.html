@@ -1,0 +1,265 @@
+<div th:if="${role}=='ROLE_HOUSEOWNER'">
+	<div th:replace="hhead::hhead"></div>
+</div>
+<div th:if="${role}=='ROLE_TENENT'">
+	<div th:replace="thead::thead"></div>
+</div>
+<div class="container-fluid">
+	<div th:if="${houseModelList.size}==0" class="text-center h5 mt-5 text-danger" th:text="'No Records Available'"></div>
+	<div th:each="houseModel:${houseModelList}">
+		<div class="card p-3 mt-3">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="text-center">
+						<img th:src="@{'data:image/jpeg;base64,' + ${houseModel.houseImage}}" style="height:225px;" alt="Image">
+					</div>
+					<div class="container mt-3">
+						<div th:if="${role}=='ROLE_HOUSEOWNER'">
+							<div th:if="${houseModel.status}=='Posted For Rental'">
+								<a th:href="${'viewRequest?houseId='+houseModel.houseId}" class="btn btn-success w-100">View Request</a>
+							</div>
+							<div th:if="${houseModel.status}=='Not Available'">
+								<a th:href="${'viewRequest?houseId='+houseModel.houseId}" class="btn btn-success w-100">View Request</a>
+							</div>
+							 <div th:if="${houseModel.status}=='Property Rented'">
+								<a th:href="${'viewRequest?houseId='+houseModel.houseId}" class="btn btn-success w-100">View Request</a>
+							</div>
+							<div class="mt-3">
+							<div th:if="${houseModel.status}=='Property Rented'">
+								<form th:action="@{'viewpayment'}" method="get">
+									<input type="hidden" name="houseId" th:value="${houseModel.houseId}">
+									<input type="submit" value="View Payment" class="btn btn-primary w-100">
+								</form>
+							</div>
+							</div>
+							<div th:if="${houseModel.status}=='Property Rented'">
+								<form th:action="@{'viewcomplaints'}" method="get">
+									<input type="hidden" name="houseId" th:value="${houseModel.houseId}">
+									<input type="submit" value="View Complaints" class="btn btn-Warning w-100">
+								</form>
+							</div>
+						</div>
+							
+							
+						<div th:if="${role}=='ROLE_HOUSEOWNER'" class="mt-3">
+							<div th:if="${houseModel.status}=='Available'">
+								<div th:if="${houseModel['rentalPackageList'].size}!=0">
+									<form th:action="@{'postRental'}" method="get">
+										<input type="hidden" name="houseId" th:value="${houseModel.houseId}">
+										<input type="submit" value="Post Rental" class="btn btn-success btn-sm w-100">
+									</form>
+								</div>
+							</div>
+							<div th:if="${houseModel.status}=='Posted For Rental'">
+								<form th:action="@{'rentalPackage'}" method="get">
+									<input type="hidden" name="houseId" th:value="${houseModel.houseId}">
+									<input type="submit" value="Add Rental Package" class="btn btn-secondary w-100">
+								</form>
+							</div>	
+							<div th:if="${houseModel.status}=='Available'">
+								<form th:action="@{'rentalPackage'}" method="get">
+									<input type="hidden" name="houseId" th:value="${houseModel.houseId}">
+									<input type="submit" value="Add Rental Package" class="btn btn-secondary w-100">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-2 mt-2">
+							<label class="text-muted" style="font-size: 70%;">House Type:</label>
+							<div class="h6" th:text="${houseModel.houseType}"></div>
+						</div>
+						<div class="col-md-2  mt-2">
+							<label class="text-muted" style="font-size: 70%;">Area:</label>
+							<div class="h6" th:text="${houseModel.area}"></div>
+						</div>
+						<div class="col-md-2  mt-2">
+							<label class="text-muted" style="font-size: 70%;">No Of Flors:</label>
+							<div class="h6" th:text="${houseModel.noOfFlors}"></div>
+						</div>
+						<div class="col-md-2  mt-2">
+							<label class="text-muted" style="font-size: 70%;">No of Bedrooms:</label>
+							<div class="h6" th:text="${houseModel.noOfBedrooms}"></div>
+						</div>
+						<div class="col-md-2  mt-2">
+							<label class="text-muted" style="font-size: 70%;">No Of Washrooms:</label>
+							<div class="h6" th:text="${houseModel.noOfWashrooms}"></div>
+						</div>
+						<div class="col-md-2  mt-2">
+							<label class="text-muted" style="font-size: 70%;">Status:</label>
+							<div class="h6" th:text="${houseModel.status}"></div>
+						</div>
+						
+					</div>
+					<div th:if="${role}!='ROLE_TENENT'">
+						<div class="bg-success p-3 text-white" th:if="${houseModel['rentalRequestModel']}!=null and ${houseModel['rentalRequestModel']['status']}=='Property Rented'">
+							<div class="text-center h5" th:text="'This Property is Rented to '+${houseModel['rentalRequestModel']['tenentModel']['name']}"></div>
+							<div class="row mt-3">
+								<div class="col-md-4">
+									<label class="" style="font-size: 70%;">Email:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['tenentModel']['email']}"></div>
+								</div>
+								<div class="col-md-4">
+									<label class="" style="font-size: 70%;">Phone:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['tenentModel']['phone']}"></div>
+								</div>
+								<div class="col-md-4">
+									<label class="" style="font-size: 70%;">Gender:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['tenentModel']['gender']}"></div>
+								</div>
+										<div class="col-md-4 mt-3">
+									<label class="" style="font-size: 70%;">Rental Package Title:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['rentalPackageModel']['rentalPackageTitle']}"></div>
+								</div>
+								<div class="col-md-4 mt-3">
+										<label class="" style="font-size: 70%;">Deposite Amount:</label>
+										<div class="h6" th:text="${'$ '+houseModel['rentalRequestModel']['rentalPackageModel']['depositeAmount']}"></div>
+									</div>
+								<div class="col-md-4 mt-3">
+									<label class="" style="font-size: 70%;">Rent Per Month:</label>
+									<div class="h6" th:text="${'$ '+houseModel['rentalRequestModel']['rentalPackageModel']['rentPerMonth']}"></div>
+								</div>
+								<div class="col-md-4 mt-3">
+									<label class="" style="font-size: 70%;">Terms&Conditions:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['rentalPackageModel']['termsConditions']}"></div>
+								</div>
+							</div>
+						</div>	
+					</div>
+					<div th:if="${houseModel['rentalPackageList'].size}==0" class="mt-5">
+						<div class="text-center h4">Rental packages not yet added</div>
+					</div>
+					<div th:if="${houseModel['rentalPackageList'].size}!=0">
+						<div th:if="${role}=='ROLE_TENENT' and ${houseModel['isRequested']}">
+							<div class="bg-info p-3 text-white" th:if="${houseModel['rentalRequestModel']}!=null">
+							<div class="text-center h5" th:text="'Your Request Status: '+${houseModel['rentalRequestModel']['status']}"></div>
+							<div class="row mt-3">
+								<div class="col-md-4">
+									<label class="" style="font-size: 70%;">Email:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['tenentModel']['email']}"></div>
+								</div>
+								<div class="col-md-4">
+									<label class="" style="font-size: 70%;">Phone:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['tenentModel']['phone']}"></div>
+								</div>
+								<div class="col-md-4">
+									<label class="" style="font-size: 70%;">Gender:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['tenentModel']['gender']}"></div>
+								</div>
+								<div class="col-md-4 mt-3">
+									<label class="" style="font-size: 70%;">Rental Package Title:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['rentalPackageModel']['rentalPackageTitle']}"></div>
+								</div>
+								<div class="col-md-4 mt-3">
+									<label class="" style="font-size: 70%;">Deposite Amount:</label>
+									<div class="h6" th:text="${'$ '+houseModel['rentalRequestModel']['rentalPackageModel']['depositeAmount']}"></div>
+								</div>
+								<div class="col-md-4 mt-3">
+									<label class="" style="font-size: 70%;">Rent Per Month:</label>
+									<div class="h6" th:text="${'$ '+houseModel['rentalRequestModel']['rentalPackageModel']['rentPerMonth']}"></div>
+								</div>
+								<div class="col-md-12 mt-3">
+									<label class="" style="font-size: 70%;">Terms&Conditions:</label>
+									<div class="h6" th:text="${houseModel['rentalRequestModel']['rentalPackageModel']['termsConditions']}"></div>
+								</div>
+								<div th:if="${houseModel['rentalRequestModel']['status']}=='Accepted for Rental'">
+									<div class="row">
+										<div class="col-md-4"></div>
+										<div class="col-md-4">
+											<form action="payment" class="mt-4">
+												<input type="hidden" name="rentalRequestId" th:value="${houseModel['rentalRequestModel']['rentalRequestId']}"/>
+												<input type="submit" value="Pay Deposit Amount" class="btn btn-success w-100"/>
+											</form>
+										</div>
+										<div class="col-md-4"></div>
+									</div>
+								</div>
+								<div th:if="${houseModel['rentalRequestModel']['status']}=='Requested for Rental'">
+									<div class="row">
+										<div class="col-md-4"></div>
+										<div class="col-md-4">
+											<form action="Cancel" class="mt-4">
+												<input type="hidden" name="rentalRequestId" th:value="${houseModel['rentalRequestModel']['rentalRequestId']}"/>
+												<input type="submit" value="Cancel Request" class="btn btn-danger w-100"/>
+											</form>
+										</div>
+									</div>
+								</div>
+								
+									
+								<div class="row" th:if="${role}=='ROLE_TENENT' and ${houseModel['rentalRequestModel']['status']=='Property Rented'}">
+									<div class="col-md-3">
+										<form th:action="@{'risecomplaints'}" method="get">
+											<input type="hidden" name="houseId" th:value="${houseModel.houseId}">
+											<input type="submit" value="Rise Compalints" class="btn btn-secondary w-100">
+										</form>
+									</div>
+									<div class="col-md-3">
+										<form th:action="@{'viewcomplaints'}" method="get">
+											<input type="hidden" name="houseId" th:value="${houseModel.houseId}">
+											<input type="submit" value="View Complaints" class="btn btn-Warning w-100">
+										</form>
+									</div>
+									<div class="col-md-3">
+										<form th:action="@{'paymentRent'}" method="get">
+											<input type="hidden" name="rentalRequestId" th:value="${houseModel['rentalRequestModel']['rentalRequestId']}"/>
+											<input type="submit" value="Pay Rent" class="btn btn-secondary w-100">
+										</form>
+									</div>
+									<div class="col-md-3">
+										<form th:action="@{'viewpayment'}" method="get">
+											<input type="hidden" name="houseId" th:value="${houseModel.houseId}">
+											<input type="submit" value="View Payment" class="btn btn-primary w-100">
+										</form>
+									</div>
+								</div>
+									
+								
+							</div>
+						</div>
+						</div>
+						<div th:if="!(${role}=='ROLE_TENENT' and ${houseModel['isRequested']})">
+							<hr>
+							<div class="text-center">Rental Packages</div>
+							<table class="table table-bordered table-sm mt-1" style="font-size: 80%;">
+								<tr>
+									<th>Rental Package Title</th>
+									<th>Terms Conditions</th>
+									<th>Deposite Amount</th>
+									<th>Rent PerMonth</th>
+									<th th:if="${role}=='ROLE_TENENT'"> send Request</th>
+								</tr>
+								<tr th:each="rentalPackage: ${houseModel['rentalPackageList']}">
+									<td th:text="${rentalPackage['rentalPackageTitle']}"></td>
+									<td th:text="${rentalPackage['termsConditions']}"></td>
+									<td th:text="${'$ '+rentalPackage['depositeAmount']}"></td>
+									<td th:text="${'$ '+rentalPackage['rentPerMonth']}"></td>
+									<div th:if="${role}=='ROLE_TENENT'">
+										<td>
+											<a th:href="${'rentalRequest?rentalPackageId='+rentalPackage.rentalPackageId}">send Request</a>
+										</td>
+									</div>
+									
+								
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-md-3">
+					<label class="text-muted" style="font-size: 70%;">Address:</label>
+					<div class="h6" th:text="${houseModel.Address}"></div>
+				</div>
+				<div class="col-md-9">
+					<labelclass="text-muted" style="font-size: 70%;">About Property:</label>
+					<div class="h6" th:text="${houseModel.aboutHome}"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

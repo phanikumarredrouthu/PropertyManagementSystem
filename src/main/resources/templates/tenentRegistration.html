@@ -1,0 +1,51 @@
+<div th:replace="head::head"></div>
+<div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 mt-3">
+				<img src="https://image.cnbcfm.com/api/v1/image/100628567-157483149.jpg?v=1532564701&w=929&h=523&vtcrop=y" style="width: 100%;"/>
+			</div>
+			<div class="col-md-6">
+				<div class="card p-3 mt-3">
+					<form th:action="@{tenentRegistration1}" th:object="${tenentModel}" th:method="post">
+						<div class="h3 text-center">New Tenents Register here</div>
+					<div class="row">
+						<div class=" col-md-6 mt-3">
+							<label>Name</label>
+							<input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter  Name" required>
+						</div>
+						<div class=" col-md-6 mt-3">
+							<label>Email</label>
+							<input type="email" id="email" th:field="*{email}" class="form-control"  placeholder="Enter  Email" required>
+						</div>
+						<div class=" col-md-6 mt-3">
+							<label>Phone</label>
+							<input type="number" id="phone" th:field="*{phone}" class="form-control" placeholder="Enter  Phone" required>
+						</div>
+						<div class=" col-md-6 mt-3">
+							<label>Password</label>
+							<input type="password" id="password" th:field="*{password}" class="form-control" placeholder="Enter  Password" required>
+						</div>
+                        <div class=" col-md-6 mt-5"> 
+                            <label for="gender"> Gender</label> &nbsp; &nbsp; 
+                            <input type="radio"  th:field="*{gender}" id="male" value= "male"><label for="male">&nbsp; male</label> &nbsp; &nbsp; &nbsp; &nbsp;
+                            <input type="radio"  th:field="*{gender}" id="female" value="female"><label for="female">&nbsp; female</label>
+                        </div>
+						 <div class=" col-md-6 mt-3">
+							<label>Age</label>
+							<input type="number" id="age" th:field="*{age}" min="18" max="100" class="form-control" placeholder="Enter  Age" required>
+						</div>
+						<div class=" col-md-12 mt-3">
+							<input type="submit" value="Register" class="btn btn-primary w-100">
+						</div>
+						<div class="col-md-12 mt-2"> 
+							already has account? <a href="${'TenentRegistration'}">Login here</a>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+	
+		</div>
+	</div>	
+</div>

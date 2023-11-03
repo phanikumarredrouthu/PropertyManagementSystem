@@ -1,0 +1,25 @@
+<div th:replace="thead::thead"></div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-8">
+			<div class="card p-3 mt-4">
+				<div class="h5 text-center">Complaints</div>
+				<form th:action="@{'risecomplaints1'}" th:object="${complaintModel}" method="post">
+					<input type="hidden" th:field="*{rentalRequestId}">
+					<div class="row mt-2">
+						<div class="col-md-12">
+							<label>Complaint:</label>
+							<textarea type="text" id="complaint" rows="10" th:field="*{complaint}" class="form-control" placeholder="Enter Complaint"></textarea>
+						</div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4 mt-3">
+							<input type="submit" value="Rise Complaint" class="btn btn-secondary w-100">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

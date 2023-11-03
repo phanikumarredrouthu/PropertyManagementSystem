@@ -1,0 +1,36 @@
+<body>
+	<div th:replace="head::head"></div>
+<div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4">
+				<div class="card p-3 mt-3">
+					<form th:action="@{/login}" method="post">
+						<div class="h3 text-center">House Owners</div>
+						<div class="mt-3">
+							<label>Email</label>
+							<input type="email" name="username" class="form-control"  placeholder="Enter  Email">
+						</div>
+						<div class="mt-3">
+							<label>Password</label>
+							<input type="password"   name="password" class="form-control" placeholder="Enter  Password" required>
+						</div>
+						<div class="mt-3">
+							<input type="submit" value="Login" class="btn btn-primary w-100" >
+						</div>
+				 	</form>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</div>	
+</div>	
+</body>
+<style>
+	body{
+		background-image: url("https://media.istockphoto.com/id/1076671916/photo/house-model-and-key-in-home-insurance-broker-agent-hand-or-in-salesman-person-real-estate.jpg?s=612x612&w=0&k=20&c=5ShZpxAs29xi8yvDtXraYdJoLnpAFEEwIlz3Fhq1e2E=");
+		background-repeat: no-repeat;
+		background-size: cover;
+</style> 
+

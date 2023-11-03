@@ -1,0 +1,74 @@
+<div th:replace="thead::thead"></div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-8">
+			<div class="card p-3 mt-4">
+				<div class="h5 text-center">Pay Deposit Amount : <label th:text="${'$ '+rentalRequestModel['rentalPackageModel']['rentPerMonth']}"></label></div>
+				<form th:action="@{'paymentRent1'}" th:object="${paymentModel}" method="post">
+					<input type="hidden" th:field="*{rentalRequestId}">
+					<div class="row mt-2">
+						<div class="col-md-6 mt-2">
+							<label for="month">Month</label>
+							<select name="month" class="form-control" id="month">
+								<option>January</option>
+								<option>February</option>
+								<option>March</option>
+								<option>April</option>
+								<option>May</option>
+								<option>June</option>
+								<option>July</option>
+								<option>August</option>
+								<option>September</option>
+								<option>October</option>
+								<option>November</option>
+								<option>December</option>
+							</select>
+						</div>
+						<div class="col-md-6 mt-2">
+							<label for="year">Year</label>
+							<select name="year" class="form-control" id="year">
+								<option>2023</option>
+								<option>2024</option>
+								<option>2025</option>
+							</select>
+						</div>
+						<div class="col-md-6 mt-2">
+							<label>Amount:</label>
+							<input type="text" id="amount" th:field="*{amount}" readonly  class="form-control" placeholder="Enter Amount">
+						</div>
+						<div class="col-md-6 mt-2">
+							<label>Payment Type:</label>
+							<select th:field="*{paymentType}" class="form-control" required>
+								<option value="">Choose Card</option>
+								<option value="DebitCard">DebitCard</option>
+								<option value="CreditCard">CreditCard</option>
+							</select>
+						</div>
+						<div class="col-md-6 mt-2">
+							<label>Card Name:</label>
+							<input type="text" id="CardName" class="form-control" placeholder="Enter Card Name">
+						</div>
+						<div class="col-md-6 mt-2">
+							<label>Card Number:</label>
+							<input type="number" id="CardNumber" class="form-control" placeholder="Enter Card Number">
+						</div>
+						<div class="col-md-6 mt-2">
+							<label>Cvv:</label>
+							<input type="number" id="Cvv" class="form-control" placeholder="Enter Cvv">
+						</div>
+						<div class="col-md-6 mt-2">
+							<label>Expired Date:</label>
+							<input type="text" id="ExpiredDate" class="form-control" placeholder="Enter Date">
+						</div>
+						<div class="col-md-4"></div>
+						<div class="col-md-4 mt-3">
+							<input type="submit" value="Proceed To pay" class="btn btn-secondary w-100">
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>
